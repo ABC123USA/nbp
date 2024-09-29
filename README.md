@@ -12,8 +12,8 @@ https://github.com/sponsors/GCABC123 **(MAGNETRON TECHNOLOGY ™)**
 Nation Builder Pro ™ - For any country network vulnerabilites can severly compromise National Security. Many dusty computers in old backrooms (with outdated SOFTWARE) act as sources to malware, malware bots etc. Nation Builder Pro ™ helps identify vulnerable ports in your country. This research is a port of MAGNETRON TECHNOLOGY ™ RESEARCH.
 
 
-**NATION BUILDER PRO ™ INSTALLATION:
-**
+**NATION BUILDER PRO ™ INSTALLATION:**
+
 1. cd nbp
 2. bash install.sh
 3. chmod +x nbp.sh
@@ -33,3 +33,9 @@ NOTE: UNDER CERTAIN LEGAL CONDITIONS THE TECHNIQUES USED BY HACKERS ARE NOT ILLE
 ![MAGNETRON LOGO](https://github.com/user-attachments/assets/af834fbe-7440-4b09-9d4d-1d065b868a23)
 
 OPEN SOURCED FROM MAGNETRON TECHNOLOGY ™ RESEARCH (CROWN CHAKRA/MIND).
+
+
+
+*️⃣📶🤖
+
+
