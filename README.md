@@ -20,3 +20,6 @@ NATION BUILDER PRO INSTALLATION:
 5. Run the script: ./nbp.sh. OR bash nbp.sh
 6. Country Codes (Alpha-2) list in countries.txt text file. This is a unique 2 letter code identifying each country individually.
 7. Built and Tested on Mac OS Written by Dr. Osaro Harriott (PhD): GENERAL CONSULTING ABC 123 BY OSAROPRIME ™
+
+
+BUILT AND TESTED ON MAC OS. SHOULD WORK FINE WITH LINUX.
