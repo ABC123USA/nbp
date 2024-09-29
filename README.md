@@ -32,6 +32,7 @@ NOTE: UNDER CERTAIN LEGAL CONDITIONS THE TECHNIQUES USED BY HACKERS ARE NOT ILLE
 
 
 <img width="908" alt="Screenshot 2024-09-28 at 11 01 27 PM" src="https://github.com/user-attachments/assets/6854e1c9-4107-4e42-b717-36fc19cbad4a">
+
 ![MAGNETRON LOGO](https://github.com/user-attachments/assets/af834fbe-7440-4b09-9d4d-1d065b868a23)
 
 *️⃣📶🤖
