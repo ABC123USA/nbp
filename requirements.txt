@@ -1,0 +1,8 @@
+jq
+coreutils
+nmap
+ffmpeg
+cmatrix
+tor
+proxychains-ng
+snort
