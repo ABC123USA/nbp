@@ -1,3 +1,13 @@
+💵 💳 💴 💶 💷
+
+BE A PART OF HISTORY! **SPONSOR** THIS PROJECT HERE:
+
+*️⃣📶🤖
+
+https://github.com/sponsors/GCABC123 **(MAGNETRON TECHNOLOGY ™)**
+
+**FUTURISTIC TECHNOLOGY NOW!**
+
 NATION BUILDER PRO INSTALLATION:
 
 1. cd nbp
