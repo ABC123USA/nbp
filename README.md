@@ -9,8 +9,7 @@ https://github.com/sponsors/GCABC123 **(MAGNETRON TECHNOLOGY ™)**
 **FUTURISTIC TECHNOLOGY NOW!**
 
 
-Nation Builder Pro ™ - For any country network vulnerabilites can severly compromise both National and Interntional Security. Many dusty computers in old backrooms around the woeld (with vunerabilities from outdated SOFTWARE) act as sources and hosts to malware, malware bots etc. Nation Builder Pro ™ helps identify vulnerable ports in your country. This research is a port of MAGNETRON TECHNOLOGY ™ RESEARCH.
-
+**Nation Builder Pro ™** - For any country network vulnerabilites can severly compromise both **National and Interntional Security**. Many dusty computers in old backrooms around the woeld (with vunerabilities from outdated **SOFTWARE**) act as sources and hosts to malware, malware bots etc. **Nation Builder Pro ™** helps identify vulnerable ports in your country. This research is a port of **MAGNETRON TECHNOLOGY ™ RESEARCH.**
 
 **NATION BUILDER PRO ™ INSTALLATION:**
 
@@ -20,7 +19,7 @@ Nation Builder Pro ™ - For any country network vulnerabilites can severly comp
 5. Run the script: ./nbp.sh. OR bash nbp.sh
 6. Country Codes (Alpha-2) list in countries.txt text file. This is a unique 2 letter code identifying each country individually.
 
-Written by Dr. Osaro Harriott (PhD): GENERAL CONSULTING ABC 123 BY OSAROPRIME ™
+Written by **Dr. Osaro Harriott (PhD): GENERAL CONSULTING ABC 123 BY OSAROPRIME ™**
 
 
 **BEST WITH HOMEBREW TERMINAL PROFILE. BUILT AND TESTED ON MAC OS  (DARWIN). SHOULD WORK FINE WITH LINUX.**
