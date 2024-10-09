@@ -19,7 +19,7 @@ https://github.com/sponsors/GCABC123 **(MAGNETRON TECHNOLOGY ™)**
 
 **ADDED: ISP PROVIDER TO AID WITH LAW ENFORCEMENT 🚨 WARRANTS**
 
-**ADDED: MOBILE AND PROXY TESTS AND MORE...**
+**ADDED: MOBILE, TOR/PROXY EXIT NODE TESTS AND MORE...**
 
 **Nation Builder Pro ™** - For any country network vulnerabilites can severly compromise both **National and Interntional Security**. Many dusty computers in old backrooms around the woeld (with vunerabilities from outdated **SOFTWARE**) act as sources and hosts to malware, malware bots etc. **Nation Builder Pro ™** helps identify vulnerable ports in your country. This research is a port of **MAGNETRON TECHNOLOGY ™ RESEARCH.**
 
