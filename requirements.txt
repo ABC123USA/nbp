@@ -6,3 +6,4 @@ cmatrix
 tor
 proxychains-ng
 snort
+curl
