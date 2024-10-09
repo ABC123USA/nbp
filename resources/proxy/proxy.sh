@@ -1,4 +1,7 @@
 #!/bin/bash
+# by Osaroprime/Dr. Osaro Harriott PhD)
+# GENERAL CONSULTING ABC 123 BY OSAROPRIME ™
+
 
 # Start or restart tor service
 if sudo brew services list | grep -q "tor.*started"; then

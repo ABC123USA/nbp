@@ -1,8 +1,10 @@
 #!/bin/bash
 # by Osaroprime
-# GENERAL CONSULTING ABC 123 BY OSAROPRIME ™
+# GENERAL CONSULTING ABC 123 BY OSAROPRIME
+#NATION BUILDER PRO ™
+# MAGNETRON TECHNOLOGY ™ RESEARCH INSTALLATION SCRIPT.
 
-# Nation Builder Pro
+# Nation Builder Pro ™
 # color
 # Reset
 
@@ -38,7 +40,7 @@ UPurple='\033[4;35m'      # Purple
 UCyan='\033[4;36m'        # Cyan
 UWhite='\033[4;37m'       # White
 
-version=1.0
+version=1.1
 
 
 # Define the number of lines in the banner (important for locking it at the top)
@@ -60,7 +62,7 @@ show_banner() {
     printf "${BBlue}██████╔╝██║   ██║██║██║     ██║  ██║█████╗  ██████╔╝${BRed}██████╔╝██████╔╝██║   ██║\n"
     printf "${BBlue}██╔══██╗██║   ██║██║██║     ██║  ██║██╔══╝  ██╔══██╗${BRed}██╔═══╝ ██╔══██╗██║   ██║\n"
     printf "${BBlue}██████╔╝╚██████╔╝██║███████╗██████╔╝███████╗██║  ██║${BRed}██║     ██║  ██║╚██████╔╝\n"
-    printf "${BBlue}╚═════╝  ╚═════╝ ╚═╝╚══════╝╚═════╝ ╚══════╝╚═╝  ╚═╝${BRed}╚═╝     ╚═╝  ╚═╝ ╚═════╝ version 1.0 \n"
+    printf "${BBlue}╚═════╝  ╚═════╝ ╚═╝╚══════╝╚═════╝ ╚══════╝╚═╝  ╚═╝${BRed}╚═╝     ╚═╝  ╚═╝ ╚═════╝ version $version \n"
     printf "${BRed}ImportError: ${BBlue}No module named 'SHIVA'\n"
     printf "=========================================================================================\n"
     printf "${White}by: ${BGreen}Osaroprime☢\n"

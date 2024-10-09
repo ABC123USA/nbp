@@ -1,4 +1,8 @@
 #!/bin/bash
+# by Osaroprime
+# GENERAL CONSULTING ABC 123 BY OSAROPRIME
+# NATION BUILDER PRO ™
+# MAGNETRON TECHNOLOGY ™ RESEARCH INSTALLATION SCRIPT.
 
 # Paths to the proxychains configuration files
 files=("/usr/local/etc/proxychains.conf" "/etc/proxychains.conf")

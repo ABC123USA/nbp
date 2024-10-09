@@ -1,4 +1,8 @@
 #!/bin/bash
+# by Osaroprime
+# GENERAL CONSULTING ABC 123 BY OSAROPRIME
+# NATION BUILDER PRO ™
+# MAGNETRON TECHNOLOGY ™ RESEARCH INSTALLATION SCRIPT.
 
 # Define the path to the torrc file
 TORRC_PATH="/usr/local/etc/tor/torrc"

@@ -1,6 +1,7 @@
 #!/bin/bash
 # by Osaroprime
 # GENERAL CONSULTING ABC 123 BY OSAROPRIME
+#NATION BUILDER PRO ™
 # MAGNETRON TECHNOLOGY ™ RESEARCH INSTALLATION SCRIPT.
 
 # Function to install Homebrew if not installed
