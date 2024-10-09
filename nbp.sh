@@ -1,7 +1,7 @@
 #!/bin/bash
-# by Osaroprime
+# by Osaroprime/Dr. Osaro Harriott (PhD)
 # GENERAL CONSULTING ABC 123 BY OSAROPRIME
-#NATION BUILDER PRO ™
+# NATION BUILDER PRO ™
 # MAGNETRON TECHNOLOGY ™ RESEARCH INSTALLATION SCRIPT.
 
 # Nation Builder Pro ™
@@ -40,11 +40,15 @@ UPurple='\033[4;35m'      # Purple
 UCyan='\033[4;36m'        # Cyan
 UWhite='\033[4;37m'       # White
 
+# NATION BUILDER PRO ™ VERSION NUMBER
 version=1.1
+
+# NATION BUILDER PRO: GEO-LOCATION ™ VERSION NUMBER
+sversion=1.0
 
 
 # Define the number of lines in the banner (important for locking it at the top)
-BANNER_LINES=50  # Increased for more space after the banner
+BANNER_LINES=23  # Increased for more space after the banner
 
 # Show the static banner
 show_banner() {
@@ -67,7 +71,7 @@ show_banner() {
     printf "=========================================================================================\n"
     printf "${White}by: ${BGreen}Osaroprime☢\n"
     printf "${White}by: ${BGreen}GENERAL CONSULTING ABC 123 BY OSAROPRIME ™  ☢\n"
-    printf "${White}by: ${BGreen}MAGNETRON TECHNOLOGY ™ RESEARCH: LUCI-4 ☢\n"
+    printf "${White}id: ${BGreen}MAGNETRON TECHNOLOGY ™ RESEARCH: LUCI-4 ☢\n"
     printf "${BGreen}Version ${BRed}$version \n"
     printf "${BRed} ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★\n"
     echo ""
@@ -106,6 +110,7 @@ CPO='\033[1;38;5;205m'
 CN='\033[1;38;5;247m'
 CNC='\033[1;38;5;051m'
 
+# GEO-LOCATION BANNER
 function banner(){
     echo -e "${RED}################################################################################################"
     echo -e "${BLUE2}  ██████  ███████  ██████      ██       ██████   ██████  █████  ████████ ██  ██████  ███    ██ "
@@ -119,78 +124,117 @@ function banner(){
     echo -e "${RED}                          Coded By: Dr Osaro Harriott (PhD)                        	       "
     echo -e "${CNC}                         https://github.com/sponsors/GCABC123                 		       "
     echo -e "${GREEN}                           https://linktr.ee/ABC123USA               			       "
-    echo -e "${GREEN}                                    version 1.0               			               "
+    echo -e "${GREEN}                                    version $sversion               			               "
     echo -e "${GREEN}                     MAGNETRON TECHNOLOGY ™ RESEARCH: LUCI-4 ™               		       "               
     echo -e "${RED}################################################################################################"
 }
 
 
 
+# FUNCTION FOR IP ADDRESS INFO
 function ip_info(){
-    banner
-    echo -e -n "${CP}\n[*] Enter Target IP: "
-    read ip
+    while true; do
+        banner
+        echo -e "${CP}\n[*] Enter 1 to enter an IP address"
+        echo -e "${CP}\n[*] Enter 2 to return to the Main Menu"
+        echo -e -n "${CP}\n[*] Choice: "
+        read choice
 
-    # Display the available language codes
-    echo -e -n "${CP}\n[*] LANGUAGE CODES"
-    echo -e -n "${CP}\n[*] en    English (default)"
-    echo -e -n "${CP}\n[*] de    Deutsch (German)"
-    echo -e -n "${CP}\n[*] es    Español (Spanish)"
-    echo -e -n "${CP}\n[*] pt-BR Português - Brasil (Portuguese)"
-    echo -e -n "${CP}\n[*] fr    Français (French)"
-    echo -e -n "${CP}\n[*] ja    日本語 (Japanese)"
-    echo -e -n "${CP}\n[*] zh-CN 中国 (Chinese)"
-    echo -e -n "${CP}\n[*] ru    Русский (Russian)"
-
-    echo -e -n "${CP}\n[*] ENTER LANGUAGE CODE: "
-    read language
-
-    # Convert input to lowercase and validate
-    language=$(echo "$language" | tr '[:upper:]' '[:lower:]')
-
-    # List of valid languages
-    valid_languages=("en" "de" "es" "pt-br" "fr" "ja" "zh-cn" "ru")
-
-    # Check if input is in the valid languages
-    if [[ ! " ${valid_languages[@]} " =~ " ${language} " ]]; then
-        echo -e "${RED}\n[!] Invalid language code. Defaulting to English (en).\n"
-        language="en"
-    fi
-
-    dest="http://ip-api.com/json/"
-    echo -e -n "${RED}\n[ 🌐 ] [VICTIM IP]: $ip \n"
-
-    # Fetch and store results in a variable
-    results=$(curl -s "$dest$ip?lang=$language&fields=66846719")
-
-    # Display parsed results using jq for each field
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [STATUS]: $(echo "$results" | jq -r '.status') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [CONTINENT 🌎]: $(echo "$results" | jq -r '.continent') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [CONTINENT CODE 🌎]: $(echo "$results" | jq -r '.continentCode') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [COUNTRY 🌎]: $(echo "$results" | jq -r '.country') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [REGION-NAME 🌎]: $(echo "$results" | jq -r '.regionName') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [CITY 🌎]: $(echo "$results" | jq -r '.city') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [DISTRICT]: $(echo "$results" | jq -r '.district') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [ZIPCODE]: $(echo "$results" | jq -r '.zip') ✔ \n"
-    echo -e -n "${RED}\n[ 🌐 ]    ➟ [LATITUDE]: $(echo "$results" | jq -r '.lat') ✔ \n"
-    echo -e -n "${RED}\n[ 🌐 ]    ➟ [LONGITUDE]: $(echo "$results" | jq -r '.lon') ✔ \n"
-    echo -e -n "${ORANGE}\n[ 🌐 ] ➟ [ISP]: $(echo "$results" | jq -r '.isp') ✔ \n"
-    echo -e -n "${ORANGE}\n[ 🌐 ] ➟ [ORGANIZATION]: $(echo "$results" | jq -r '.org') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [AS]: $(echo "$results" | jq -r '.as') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [ASNAME]: $(echo "$results" | jq -r '.asname') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [TIMEZONE]: $(echo "$results" | jq -r '.timezone') ✔ \n"
-    echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [OFFSET]: $(echo "$results" | jq -r '.offset') ✔ \n"
-    echo -e -n "${YELLOW}\n[ 🌐 ] ➟ [CURRENCY]: $(echo "$results" | jq -r '.currency') ✔ \n"
-    echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [REVERSE DNS]: $(echo "$results" | jq -r '.reverse') ✔ \n"
-    echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [MOBILE 📲]: $(echo "$results" | jq -r '.mobile') ✔ \n"
-    echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [PROXY, VPN, TOR exit address]: $(echo "$results" | jq -r '.proxy') ✔ \n"
-    echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [HOSTING, COLOCATED OR DATA CENTER]: $(echo "$results" | jq -r '.hosting') ✔ \n"
-
-    sleep 1
-    echo -e -n "${RED}\n<--------Thanks For Using IP-Location Script--------->\n"
+        case $choice in
+            1)
+                # Proceed with the IP info retrieval process
+                fetch_ip_info "$ip"
+                ;;
+            2)
+                echo -e "${GREEN}\n[*] Returning to the Main Menu..."
+                return
+                ;;
+            *)
+                echo -e "${RED}\n[!] Invalid choice, please try again."
+                ;;
+        esac
+    done
 }
 
 
+
+
+
+# FUNCTION FOR FETCHING IP ADDRESS INFO
+function fetch_ip_info(){
+    while true; do
+        echo -e -n "${CP}\n[*] Enter Target IP: "
+        read ip
+
+        # Display the available language codes
+        echo -e -n "${CP}\n[*] LANGUAGE CODES"
+        echo -e -n "${CP}\n[*] en    English (default)"
+        echo -e -n "${CP}\n[*] de    Deutsch (German)"
+        echo -e -n "${CP}\n[*] es    Español (Spanish)"
+        echo -e -n "${CP}\n[*] pt-BR Português - Brasil (Portuguese)"
+        echo -e -n "${CP}\n[*] fr    Français (French)"
+        echo -e -n "${CP}\n[*] ja    日本語 (Japanese)"
+        echo -e -n "${CP}\n[*] zh-CN 中国 (Chinese)"
+        echo -e -n "${CP}\n[*] ru    Русский (Russian)"
+
+        echo -e -n "${CP}\n[*] ENTER LANGUAGE CODE: "
+        read language
+
+        # Convert input to lowercase and validate
+        language=$(echo "$language" | tr '[:upper:]' '[:lower:]')
+
+        # List of valid languages
+        valid_languages=("en" "de" "es" "pt-br" "fr" "ja" "zh-cn" "ru")
+
+        # Check if input is in the valid languages
+        if [[ ! " ${valid_languages[@]} " =~ " ${language} " ]]; then
+            echo -e "${RED}\n[!] Invalid language code. Defaulting to English (en).\n"
+            language="en"
+        fi
+
+        dest="http://ip-api.com/json/"
+        echo -e -n "${RED}\n[ 🌐 ] [VICTIM IP]: $ip \n"
+
+        # Fetch and store results in a variable
+        results=$(curl -s "$dest$ip?lang=$language&fields=66846719")
+
+        # Display parsed results using jq for each field
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [STATUS]: $(echo "$results" | jq -r '.status') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [CONTINENT 🌎]: $(echo "$results" | jq -r '.continent') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [CONTINENT CODE 🌎]: $(echo "$results" | jq -r '.continentCode') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [COUNTRY 🌎]: $(echo "$results" | jq -r '.country') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [REGION-NAME 🌎]: $(echo "$results" | jq -r '.regionName') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [CITY 🌎]: $(echo "$results" | jq -r '.city') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [DISTRICT]: $(echo "$results" | jq -r '.district') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [ZIPCODE]: $(echo "$results" | jq -r '.zip') ✔ \n"
+        echo -e -n "${RED}\n[ 🌐 ]    ➟ [LATITUDE]: $(echo "$results" | jq -r '.lat') ✔ \n"
+        echo -e -n "${RED}\n[ 🌐 ]    ➟ [LONGITUDE]: $(echo "$results" | jq -r '.lon') ✔ \n"
+        echo -e -n "${ORANGE}\n[ 🌐 ] ➟ [ISP]: $(echo "$results" | jq -r '.isp') ✔ \n"
+        echo -e -n "${ORANGE}\n[ 🌐 ] ➟ [ORGANIZATION]: $(echo "$results" | jq -r '.org') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [AS]: $(echo "$results" | jq -r '.as') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [ASNAME]: $(echo "$results" | jq -r '.asname') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [TIMEZONE]: $(echo "$results" | jq -r '.timezone') ✔ \n"
+        echo -e -n "${BLUE}\n[ 🌐 ]   ➟ [OFFSET]: $(echo "$results" | jq -r '.offset') ✔ \n"
+        echo -e -n "${YELLOW}\n[ 🌐 ] ➟ [CURRENCY]: $(echo "$results" | jq -r '.currency') ✔ \n"
+        echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [REVERSE DNS]: $(echo "$results" | jq -r '.reverse') ✔ \n"
+        echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [MOBILE 📲]: $(echo "$results" | jq -r '.mobile') ✔ \n"
+        echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [PROXY, VPN, TOR exit address]: $(echo "$results" | jq -r '.proxy') ✔ \n"
+        echo -e -n "${GREEN}\n[ 🌐 ]  ➟ [HOSTING, COLOCATED OR DATA CENTER]: $(echo "$results" | jq -r '.hosting') ✔ \n"
+
+        sleep 1
+        echo -e -n "${RED}\n<-------- Thanks For Using NATION BUILDER PRO ™ IP Geo-Location --------->\n"
+
+        # Ask user if they want to look up another IP
+        echo -e -n "${CP}[*] Do you want to get GEO-LOCATION INFORMATION for another IP Address? (y/n): "
+        read again
+        if [[ "$again" != "y" ]]; then
+            break
+        fi
+    done
+
+    # After exiting the loop, return to the main menu
+    echo -e "${GREEN}\n[*] Returning to the Main Menu..."
+}
 
 
 
@@ -428,7 +472,7 @@ trap "sudo brew services stop tor" EXIT
 
 
 kill -9 $CMATRIX_PID
-kill -9 $FFPLAY_PID
+kill -9 $FFPLAY_PID &
 echo "Tasks completed and cmatrix/ffplay stopped."
 
 
@@ -491,7 +535,7 @@ while true; do
                     while IFS= read -r ip && [[ $scan_count -lt $max_scans ]]; do
                         echo "Scanning IP address: $ip"
                         # Run nmap on the current IP
-                        sudo proxychains4 nmap -sS -sV --script vuln --open -Pn "$ip" -oN ./resources/logs/${country_code}_$(date +%Y%m%d_%H%M%S)_${ip}.txt
+                        sudo proxychains4 nmap -sS -sV -O --script vuln --open -Pn "$ip" -oN ./resources/logs/${country_code}_$(date +%Y%m%d_%H%M%S)_${ip}.txt
                         ((scan_count++))  # Increment the scan count
                     done < "$output_file"
 
@@ -504,16 +548,9 @@ while true; do
             ;;
  	2)
             ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
-		clear 
- 		while true; do
-                    ip_info
-                    echo -e -n "${CP}[*] Do you want to get GEO-LOCATION INFORMATION for another IP Address? (y/n): "
-                    read again
-                    if [[ "$again" != "y" ]]; then
-                        break
-                    fi
-                done
-                ;;
+	    clear 
+            ip_info
+            ;;
     
         3)
             ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
