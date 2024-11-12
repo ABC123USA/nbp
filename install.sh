@@ -25,6 +25,8 @@ else
     exit 1
 fi
 
+
+
 # Adjust permissions on the configuration files (if necessary)
 chmod +rwx ./resources/configuration_files/openssl.sh
 
@@ -75,6 +77,19 @@ done < "$REQUIREMENTS_FILE"
 echo "All specified packages installed or upgraded."
 
 
+
+
+# Function to install Python dependencies
+install_python_dependencies() {
+  echo "Installing Python dependencies..."
+  while IFS= read -r package; do
+    pip3 show "$package" &>/dev/null || pip3 install "$package"
+  done < "pip_requirements.txt"
+}
+
+install_python_dependencies
+
+
 # START CONFIGURATION
 
 # Adjust permissions on the configuration files (if necessary)
@@ -100,6 +115,7 @@ echo "Configuration of Nation Builder Pro ™ is complete!"
 # Continue with the rest of the install.sh script
 echo "Continuing Nation Builder Pro ™ Installation..."
 
+sudo chmod +rwx ./resources/SatIntel/main.go
 
 
 
@@ -163,6 +179,14 @@ for file in "$nmap_share_path/ipv6"/*.cidr; do
 done
 
 echo "Download and renaming CIDR complete."
+
+
+
+
+
+echo "Installation complete."
+
+
 
 
 

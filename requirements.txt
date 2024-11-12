@@ -7,3 +7,6 @@ tor
 proxychains-ng
 snort
 curl
+go
+shodan
+python

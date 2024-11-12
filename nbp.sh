@@ -124,9 +124,77 @@ function banner(){
     echo -e "${RED}                          Coded By: Dr Osaro Harriott (PhD)                        	       "
     echo -e "${CNC}                         https://github.com/sponsors/GCABC123                 		       "
     echo -e "${GREEN}                           https://linktr.ee/ABC123USA               			       "
-    echo -e "${GREEN}                                    version $sversion               			               "
+    echo -e "${GREEN}                              version $sversion               			               "
     echo -e "${GREEN}                     MAGNETRON TECHNOLOGY ™ RESEARCH: LUCI-4 ™               		       "               
     echo -e "${RED}################################################################################################"
+}
+
+
+
+# Function to validate IP address format (IPv4 and IPv6)
+function validate_ip() {
+    local ip="$1"
+    if [[ $ip =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]] || [[ $ip =~ ^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Prompt for API Key
+get_credentials() {
+    echo "Enter your Shodan API key (stored securely):"
+    read -p "Shodan API Key: " shodan_key
+
+    echo
+    # Encrypt and store key (example using OpenSSL)
+    echo "$shodan_key" | openssl enc -aes-256-cbc -e -out ./credentials/shodan.enc
+   
+}
+
+# Function to decrypt and load Shodan credentials
+load_credentials() {
+    shodan_key=$(openssl enc -aes-256-cbc -d -in ./credentials/shodan.enc)
+
+}
+
+# Error handling function for Shodan API key issues
+check_credentials() {
+    if [[ -z "$shodan_key" ]]; then
+        echo "Error: Missing Shodan API credential. Re-enter credential."
+        get_credentials
+    fi
+}
+
+
+
+# Function to prompt for IP and make Shodan query
+function geo_ping() {
+    while true; do
+        echo -e -n "${GREEN}[*] Enter Target IP (or type 'back' to return to the main menu): ${RESET}"
+        read ip
+
+        # Check if the user wants to go back to the main menu
+        if [[ "$ip" == "back" ]]; then
+            break
+        fi
+
+        # Validate IP address
+        if validate_ip "$ip"; then
+            # Query Shodan Geo-Ping API and format output with jq
+            response=$(curl -s "https://geonet.shodan.io/api/geoping/$ip" | jq)
+            if [[ $? -eq 0 ]]; then
+                echo -e "${CYAN}Results for IP: $ip${RESET}"
+                echo "$response"
+                python3 ./resources/scripts/generate_map.py "$ip" "$response"
+
+            else
+                echo -e "${CYAN}[!] Error: Failed to retrieve data for $ip.${RESET}"
+            fi
+        else
+            echo -e "${CYAN}[!] Invalid IP address format. Please enter a valid IPv4 or IPv6 address.${RESET}"
+        fi
+    done
 }
 
 
@@ -156,6 +224,25 @@ function ip_info(){
     done
 }
 
+# Shodan API Key
+API_KEY="YOUR_SHODAN_API_KEY"
+
+# Function to query Shodan API for webcams by geo location
+function search_webcams() {
+    # Prompt user for geo location (latitude and longitude)
+    read -p "Enter latitude: " latitude
+    read -p "Enter longitude: " longitude
+    read -p "Enter search radius (km): " radius
+
+    # Define the search query
+    query="webcam"
+
+    # Make the API request with curl
+    echo "Searching for webcams near ($latitude, $longitude) with a $radius km radius..."
+    curl -s -G "https://api.shodan.io/shodan/host/search" \
+         --data-urlencode "query=$query geo:$latitude,$longitude,$radius" \
+         --data-urlencode "key=$API_KEY"
+}
 
 
 
@@ -224,6 +311,14 @@ function fetch_ip_info(){
         sleep 1
         echo -e -n "${RED}\n<-------- Thanks For Using NATION BUILDER PRO ™ IP Geo-Location --------->\n"
 
+        # Ask user if they want to look up  IP adress info on a map...
+        echo -e -n "${CP}[*] Do you want to get show the IP Address GEO-LOCATION INFORMATION  on a map? (y/n): "
+        read sagain
+        if [[ "$sagain" = "y" ]]; then
+            python3 ./resources/scripts/generate_map.py "$latitude" "$longitude" "location" "$ip"
+        fi
+
+
         # Ask user if they want to look up another IP
         echo -e -n "${CP}[*] Do you want to get GEO-LOCATION INFORMATION for another IP Address? (y/n): "
         read again
@@ -238,14 +333,37 @@ function fetch_ip_info(){
 
 
 
+function check_for_upgrades(){
 
-# Function to check for upgrades
-check_for_upgrades() {
-    echo -e "${Cyan}Checking for updates...${clear}"
-    sudo brew update
-    sudo brew upgrade jq coreutils nmap ffmpeg cmatrix snort tor proxychains-ng
-    echo -e "${Cyan}Update check completed!${clear}"
+# Path to the requirements.txt file in the same directory as this script
+REQUIREMENTS_FILE="./requirements.txt"
+
+# Check if requirements.txt exists
+if [[ ! -f "$REQUIREMENTS_FILE" ]]; then
+    echo "Error: requirements.txt not found!"
+    exit 1
+fi
+
+# Loop through each line in requirements.txt
+while IFS= read -r package; do
+    if [[ ! -z "$package" && ! "$package" =~ ^# ]]; then
+        # Echo message before installing/upgrading each package
+        echo "upgrading $package..."
+
+        # Check if the package is already installed
+        if ! brew list --formula | grep -q "^$package\$"; then
+            # upgrade required packages to the latest version
+            brew upgrade "$package"
+        fi
+    fi
+done < "$REQUIREMENTS_FILE"
+
+echo "All specified packages upgraded."
+
+
+
 }
+
 
 
 
@@ -475,6 +593,17 @@ kill -9 $CMATRIX_PID
 kill -9 $FFPLAY_PID &
 echo "Tasks completed and cmatrix/ffplay stopped."
 
+# Get/Load Credentials
+if [[ ! -d "./credentials" ]]; then
+    mkdir ./credentials
+    get_credentials
+else
+    load_credentials
+    check_credentials
+fi
+
+ 
+
 
 # Display the banner only after all installs are completed
 init_static_banner
@@ -493,13 +622,16 @@ while true; do
     echo "MENU:"
     echo "1) Search for open ports in a country"
     echo "2) IP ADDRESS GEO-LOCATION"
-    echo "3) Exit"
+    echo "3) GeoPing-Pro ™"
+    echo "4) GeoCam Pro ™"
+    echo "5) Trace route to target IP address
+    echo "6) Exit"
     read -p "Choose an option: " option
 
     case $option in
         1)
             ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
-	    read -p "Enter country code: " country_code
+	        read -p "Enter country code: " country_code
             read -p "Enter IP version (ipv4/ipv6): " ip_version
             read -p "Enter maximum number of scans (default 100): " max_scans
 
@@ -546,17 +678,45 @@ while true; do
             done < "$cidr_file"
 
             ;;
- 	2)
+ 	    2)
             ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
-	    clear 
+	        clear 
             ip_info
-            ;;
-    
-        3)
+            ;; 
+
+ 	    3)
             ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
-	    echo "Exiting..."
+	        clear 
+	        echo "Running GeoPing-Pro ™..."
+    	    geo_ping            
+	        ;;
+
+        4)
+            ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
+	        clear
+            echo "Running GeoCam-Pro ™..."
+            search_webcams
             break
             ;;
+    
+        5)
+            ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
+	        echo "Tracing route to target IP address..."
+            read -p "Enter IP address (ipv4/ipv6): " ip_adress_trace
+            traceroute ip_adress_trace
+            break
+            ;;
+ 
+
+
+        6)
+            ffplay -nodisp -autoexit ./resources/audio/audio2.mp3 &>/dev/null &
+	        echo "Exiting..."
+            break
+            ;;
+   
+
+
         *)
             echo "Invalid option, please try again."
             ;;
